@@ -32,7 +32,7 @@ namespace OpenWeatherApp
 
         void SetPosition()
         {
-            CityMap.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(52.6, 39.57), Distance.FromKilometers(0.3)));
+            CityMap.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(52.6, 39.57), Distance.FromKilometers(5)));
             CityMap.Pins.Add(new Pin()
             {
                 Position = new Position(52.6, 39.57),

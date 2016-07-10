@@ -21,26 +21,11 @@
 
     <AbsoluteLayout BackgroundColor="White">
       <StackLayout Spacing="0" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
-        <!--
-        <ContentView>
-          <AbsoluteLayout VerticalOptions="FillAndExpand">
-            <ContentView Padding="50" VerticalOptions="Center" IsVisible="{Binding HasLocation, Converter={StaticResource BooleanInverter}}" IsEnabled="{Binding HasLocation, Converter={StaticResource BooleanInverter}}" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1.0, 1.0">
-              <StackLayout Spacing="20">
-                <Label Text="Could not find device location." VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
-                <Label Text="No map is available." VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
-              </StackLayout>
-            </ContentView>
-            <AbsoluteLayout IsEnabled="{Binding HasLocation}" IsVisible="{Binding HasLocation}" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1.0, 1.0">
-              <ActivityIndicator IsVisible="{Binding IsBusy}" IsRunning="{Binding IsBusy}" AbsoluteLayout.LayoutFlags="PositionProportional, WidthProportional" AbsoluteLayout.LayoutBounds="0.5, 0.5, 0.2, AutoSize" />
-              <maps:Map x:Name="CityMap" IsVisible="false" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1.0, 1.0" />
-            </AbsoluteLayout>
-          </AbsoluteLayout>
-        </ContentView>
-        -->
         
         <ContentView>
           <AbsoluteLayout VerticalOptions="FillAndExpand">
             <AbsoluteLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1.0, 1.0">
+              <ActivityIndicator IsVisible="{Binding IsBusy}" IsRunning="{Binding IsBusy}" AbsoluteLayout.LayoutFlags="PositionProportional, WidthProportional" AbsoluteLayout.LayoutBounds="0.5, 0.5, 0.2, AutoSize" />
               <maps:Map x:Name="CityMap" WidthRequest="320" HeightRequest="300" IsShowingUser="true" MapType="Satellite" IsVisible="true" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1.0, 1.0" />
             </AbsoluteLayout>
           </AbsoluteLayout>
@@ -114,12 +99,3 @@
   </ContentPage.Content>
 
 </ContentPage>
-
-<!--
-<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="OpenWeatherApp.CityWeatherPage">
-  <Label Text="{Binding MainText}" VerticalOptions="Center" HorizontalOptions="Center" />
-</ContentPage>
--->

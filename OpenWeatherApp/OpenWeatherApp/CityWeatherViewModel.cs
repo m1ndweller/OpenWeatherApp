@@ -19,10 +19,6 @@ namespace OpenWeatherApp
 
             City = city;
 
-            //--------------------------------------------------
-            City.Latitude = "52.6";
-            City.Longitude = "39.57";
-
 
             //SubscribeToSaveAcquaintanceMessages();
         }
@@ -72,12 +68,12 @@ namespace OpenWeatherApp
 
         public async Task<Position> GetPosition()
         {
-            this.City.Latitude = "ky";
-            this.City.Longitude = "ky";
+            this.City.Latitude = "52.6";
+            this.City.Longitude = "39.57";
             this.City.Name = "Lipetsk";
 
 
-            /*if (!HasAddress)
+            /*if (!HasLocation)
                 return new Position(0, 0);
 
             IsBusy = true;
@@ -98,7 +94,11 @@ namespace OpenWeatherApp
             IsBusy = false;
 
             return p;*/
-            await Task.Delay(1000);
+            JsonUtility jsu = new JsonUtility();
+            //this.City.Country = jsu.CheckRequest("Lipetsk");
+            string s = await jsu.RefreshDataAsync("Lipetsk");
+            this.City.WeatherMain = s;
+            //await Task.Delay(1000);
             return new Position(0, 0);
         }
     }
