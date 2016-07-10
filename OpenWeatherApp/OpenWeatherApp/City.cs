@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using MvvmHelpers;
 using Newtonsoft.Json;
 
-namespace OpenWeatherApp
+namespace OpenWeatherApp.Data
 {
     public class City : ObservableObject
     {

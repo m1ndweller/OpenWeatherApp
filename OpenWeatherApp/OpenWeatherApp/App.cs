@@ -14,11 +14,22 @@ namespace OpenWeatherApp
     {
         public App()
         {
-            //InitializeComponent();
-
             SubscribeToDisplayAlertMessages();
 
-            MainPage = new CityWeatherPage();
+
+            var navPage =
+                    new NavigationPage(
+                        new CityWeatherPage()
+                        {
+                            BindingContext = new CityWeatherViewModel(new Data.City()),
+                            Title = "City Weather"
+                        })
+                    {
+                        BarBackgroundColor = Color.FromHex("547799"),
+                        BarTextColor = Color.White
+                    };
+
+            MainPage = navPage;
         }
 
         protected override void OnStart()

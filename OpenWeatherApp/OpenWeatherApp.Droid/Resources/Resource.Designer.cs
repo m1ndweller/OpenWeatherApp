@@ -2935,6 +2935,9 @@ namespace OpenWeatherApp.Droid
 			// aapt resource value: 0x7f0a0053
 			public const int title_template = 2131361875;
 			
+			// aapt resource value: 0x7f0a00a3
+			public const int toolbar = 2131361955;
+			
 			// aapt resource value: 0x7f0a003d
 			public const int top = 2131361853;
 			
@@ -3207,6 +3210,9 @@ namespace OpenWeatherApp.Droid
 			
 			// aapt resource value: 0x7f030036
 			public const int support_simple_spinner_dropdown_item = 2130903094;
+			
+			// aapt resource value: 0x7f030037
+			public const int toolbar = 2130903095;
 			
 			static Layout()
 			{

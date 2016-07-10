@@ -14,7 +14,7 @@
   </ContentPage.Resources>
 
   <ContentPage.ToolbarItems>
-    <ToolbarItem Text="Search" Icon="search.png" Command="{Binding SearchCityCommand}" />
+    <ToolbarItem Text="Search" Icon="search.jpg" Command="{Binding SearchCityCommand}" />
   </ContentPage.ToolbarItems>
 
   <ContentPage.Content>
@@ -37,21 +37,28 @@
           </AbsoluteLayout>
         </ContentView>
         -->
-
+        
         <ContentView>
           <AbsoluteLayout VerticalOptions="FillAndExpand">
             <AbsoluteLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1.0, 1.0">
-              <maps:Map x:Name="CityMap" WidthRequest="320" HeightRequest="300" IsShowingUser="true" MapType="Hybrid" IsVisible="true" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1.0, 1.0" />
+              <maps:Map x:Name="CityMap" WidthRequest="320" HeightRequest="300" IsShowingUser="true" MapType="Satellite" IsVisible="true" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1.0, 1.0" />
             </AbsoluteLayout>
           </AbsoluteLayout>
         </ContentView>
         
+        
         <ContentView HeightRequest="1" BackgroundColor="Silver" />
 
-        <ContentView IsEnabled="{Binding HasLocation}" IsVisible="{Binding HasLocation}">
+        <ContentView>
 
           <StackLayout>
-
+            <StackLayout Orientation="Horizontal" Spacing="10">
+              <!--
+              <SearchBar Placeholder="Search" SearchCommand="{Binding SearchCityCommand}" /> 
+              -->
+              <Entry />
+              <Button Text="Go" Command="{Binding SearchCityCommand}"/>
+            </StackLayout>
             <StackLayout Orientation="Horizontal" Spacing="10">
               <Label Text="{Binding City.Name}" FontSize="Micro"/>
               <Label Text="{Binding City.Country}" FontSize="Micro"/>

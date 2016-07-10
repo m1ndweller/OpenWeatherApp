@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using FormsToolkit;
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
+using OpenWeatherApp.Data;
 
 namespace OpenWeatherApp
 {
@@ -71,6 +72,11 @@ namespace OpenWeatherApp
 
         public async Task<Position> GetPosition()
         {
+            this.City.Latitude = "ky";
+            this.City.Longitude = "ky";
+            this.City.Name = "Lipetsk";
+
+
             /*if (!HasAddress)
                 return new Position(0, 0);
 
