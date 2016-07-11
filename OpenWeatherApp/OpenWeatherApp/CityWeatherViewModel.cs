@@ -23,7 +23,6 @@ namespace OpenWeatherApp
             City = city;
 
 
-            //SubscribeToSaveAcquaintanceMessages();
         }
 
         public City City { private set; get; }
@@ -45,8 +44,7 @@ namespace OpenWeatherApp
 
         async Task ExecuteSearchCityCommand()
         {
-            await GetPosition();
-            //await PushAsync(new AcquaintanceEditPage() { BindingContext = new AcquaintanceEditViewModel(Acquaintance) });
+            await GetWeatherData();
         }
 
         public void SetupMap()
@@ -56,76 +54,28 @@ namespace OpenWeatherApp
                 MessagingService.Current.SendMessage(MessageKeys.SetupMap);
             }
         }
-
-        public void DisplayGeocodingError()
+                
+        public async Task<Position> GetWeatherData()
         {
-            MessagingService.Current.SendMessage<MessagingServiceAlert>(MessageKeys.DisplayAlert, new MessagingServiceAlert()
-            {
-                Title = "Geocoding Error",
-                Message = "Please check network connection.",
-                Cancel = "OK"
-            });
-
-            IsBusy = false;
-        }
-
-        public async Task<Position> GetPosition()
-        {
-            //this.City.Latitude = "52.6";
-            //this.City.Longitude = "39.57";
-            //this.City.Name = "Lipetsk";
-
-
-            /*if (!HasLocation)
-                return new Position(0, 0);
-
-            IsBusy = true;
-
-            Position p;
-
-            p = (await _Geocoder.GetPositionsForAddressAsync(Acquaintance.AddressString)).FirstOrDefault();
-
-            // The Android geocoder (the underlying implementation in Android itself) fails with some addresses unless they're rounded to the hundreds.
-            // So, this deals with that edge case.
-            if (p.Latitude == 0 && p.Longitude == 0 && AddressBeginsWithNumber(Acquaintance.AddressString) && Device.OS == TargetPlatform.Android)
-            {
-                var roundedAddress = GetAddressWithRoundedStreetNumber(Acquaintance.AddressString);
-
-                p = (await _Geocoder.GetPositionsForAddressAsync(roundedAddress)).FirstOrDefault();
-            }
-
-            IsBusy = false;
-
-            return p;*/
             JsonUtility jsu = new JsonUtility();
             //this.City.Country = jsu.CheckRequest("Lipetsk");
             this.City.Name = this.City.SearchName;
-            string s = await jsu.RefreshDataAsync(this.City.SearchName);
-            this.City.WeatherMain = s;
+            //string s = await jsu.RefreshDataAsync(this.City.SearchName);
+            //this.City.WeatherMain = s;
             //await Task.Delay(1000);
-            City c = await jsu.GetWeather(this.City.SearchName);
-            this.City.copy(c);
-            c = null;
-
-            //double lat, lon;
-            //lat = Double.Parse(String.Format(this.City.Latitude));
-            //lon =  Double.Parse(String.Format(this.City.Longitude));
-            //lat = Convert.ToDouble(this.City.Latitude, CultureInfo.InvariantCulture);
-            //lon = Convert.ToDouble(this.City.Longitude, CultureInfo.InvariantCulture);
-            //await ExecuteGetDirectionsCommand(lat, lon);
-            //this.City.Name = c.Name;
-            //this.City = await jsu.GetWeather("Lipetsk");
-            //await jsu.GetWeather("Lipetsk");
+            try
+            {
+                City c = await jsu.GetWeather(this.City.SearchName);
+                this.City.copy(c);
+                c = null;
+            } catch (Exception e)
+            {
+                City c = new City();
+                this.City.copy(c);
+                this.City.Name = "Not found";
+                c = null;
+            }
             return new Position(0, 0);
-        }
-        /*
-        async Task ExecuteGetDirectionsCommand(double lat, double lon)
-        {
-            var position = new Position(lat, lon);
-
-            var pin = new Pin() { Position = position };
-
-            await CrossExternalMaps.Current.NavigateTo(pin.Label, pin.Position.Latitude, pin.Position.Longitude, NavigationType.Driving);
-        }*/
+        }        
     }
 }

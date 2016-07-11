@@ -113,14 +113,14 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Icons\01d.png" />
-    <Content Include="Icons\01n.png" />
-    <Content Include="Icons\02d.png" />
-    <Content Include="Icons\02n.png" />
-    <Content Include="Icons\03d.png" />
-    <Content Include="Icons\03n.png" />
-    <Content Include="Icons\04d.png" />
-    <Content Include="Icons\04n.png" />
+    <EmbeddedResource Include="Resources\r01d.png" />
+    <EmbeddedResource Include="Resources\r01n.png" />
+    <EmbeddedResource Include="Resources\r02d.png" />
+    <EmbeddedResource Include="Resources\r02n.png" />
+    <EmbeddedResource Include="Resources\r03d.png" />
+    <EmbeddedResource Include="Resources\r03n.png" />
+    <EmbeddedResource Include="Resources\r04d.png" />
+    <EmbeddedResource Include="Resources\r04n.png" />
     <Content Include="search.jpg" />
   </ItemGroup>
   <ItemGroup />

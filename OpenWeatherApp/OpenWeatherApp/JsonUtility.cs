@@ -60,19 +60,14 @@ namespace OpenWeatherApp
         public City FillCityDataFromJson(string json_string)
         {
             City c = new City();
-            //JArray weather_block;
+            
             dynamic js = JObject.Parse(json_string);
             c.Name = js.name;
             c.Country = js.sys.country;
             c.Latitude = js.coord.lat;
-            c.Longitude = js.coord.lon;
-            //weather_block = js.weather;
-            //string[] Users = weather_block.ToObject<string[]>();
-            //c.WeatherHumidity = Users;
-            c.WeatherIconUrl = /*"Icons/" +*/ js.weather[0].icon + ".png";
-            c.WeatherTempKelvin = js.main.temp;
-            //double temp_kd = js.main.temp;
-            //c.WeatherTempCelsius = (temp_kd - 273.15).ToString().Replace(",",".") + "\u00B0 C";
+            c.Longitude = js.coord.lon;            
+            c.WeatherIconUrl = /*"Resources/" +*/ "r" + js.weather[0].icon + ".png";
+            c.WeatherTempKelvin = js.main.temp;            
             c.WeatherTempCelsius = (js.main.temp - 273.15).ToString().Replace(",", ".") + "\u00B0 C";
             c.WeatherMain = js.weather[0].main;
             c.WeatherWind = js.wind.speed + " m/s";
@@ -104,17 +99,6 @@ namespace OpenWeatherApp
             dtDateTime = dtDateTime.AddSeconds(unixTimeStamp).ToLocalTime();
             return dtDateTime;
         }
-        /*public void FillCityDataFromJson(string json_string, City c)
-        {
-            dynamic js = JObject.Parse(json_string);
-            c.Name = js.name;
-        }
-        public async void GetWeather(string city_name, City c)
-        {
-            string json_data;
-            json_data = await RefreshDataAsync(city_name);
-            FillCityDataFromJson(json_data, c);
-        }*/
 
     }
 }

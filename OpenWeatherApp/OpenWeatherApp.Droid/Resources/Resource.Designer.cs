@@ -2460,8 +2460,32 @@ namespace OpenWeatherApp.Droid
 			// aapt resource value: 0x7f0200ca
 			public const int mr_ic_play_light = 2130837706;
 			
+			// aapt resource value: 0x7f0200d3
+			public const int notification_template_icon_bg = 2130837715;
+			
 			// aapt resource value: 0x7f0200cb
-			public const int notification_template_icon_bg = 2130837707;
+			public const int r01d = 2130837707;
+			
+			// aapt resource value: 0x7f0200cc
+			public const int r01n = 2130837708;
+			
+			// aapt resource value: 0x7f0200cd
+			public const int r02d = 2130837709;
+			
+			// aapt resource value: 0x7f0200ce
+			public const int r02n = 2130837710;
+			
+			// aapt resource value: 0x7f0200cf
+			public const int r03d = 2130837711;
+			
+			// aapt resource value: 0x7f0200d0
+			public const int r03n = 2130837712;
+			
+			// aapt resource value: 0x7f0200d1
+			public const int r04d = 2130837713;
+			
+			// aapt resource value: 0x7f0200d2
+			public const int r04n = 2130837714;
 			
 			static Drawable()
 			{

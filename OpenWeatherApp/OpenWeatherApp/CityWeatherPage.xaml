@@ -14,7 +14,6 @@
   </ContentPage.Resources>
 
   <ContentPage.ToolbarItems>
-    <ToolbarItem Text="Search" Icon="search.jpg" Command="{Binding SearchCityCommand}" />
   </ContentPage.ToolbarItems>
 
   <ContentPage.Content>
@@ -30,7 +29,7 @@
           <AbsoluteLayout VerticalOptions="FillAndExpand">
             <AbsoluteLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1.0, 1.0">
               <ActivityIndicator IsVisible="{Binding IsBusy}" IsRunning="{Binding IsBusy}" AbsoluteLayout.LayoutFlags="PositionProportional, WidthProportional" AbsoluteLayout.LayoutBounds="0.5, 0.5, 0.2, AutoSize" />
-              <maps:Map x:Name="CityMap" WidthRequest="320" HeightRequest="300" IsShowingUser="true" MapType="Hybrid" IsVisible="true" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1.0, 1.0" />
+              <maps:Map x:Name="CityMap" WidthRequest="320" HeightRequest="240" IsShowingUser="true" MapType="Hybrid" IsVisible="true" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1.0, 1.0" />
             </AbsoluteLayout>
           </AbsoluteLayout>
         </ContentView>
@@ -42,49 +41,49 @@
 
           <StackLayout>
             <StackLayout Orientation="Horizontal" Spacing="10">
-              <Label Text="{Binding City.Name}" FontSize="Micro"/>
-              <Label Text="{Binding City.Country}" FontSize="Micro"/>
+              <Label Text="{Binding City.Name}" FontSize="20"/>
+              <Label Text="{Binding City.Country}" FontSize="20"/>
             </StackLayout>
 
             <StackLayout Orientation="Horizontal" Spacing="10">
               <Image Source="{Binding City.WeatherIconUrl}" Aspect="AspectFit" HeightRequest="50" WidthRequest="50"/>
-              <Label Text="{Binding City.WeatherTempCelsius}" FontSize="Micro"/>
-              <Label Text="{Binding City.WeatherMain}" FontSize="Micro"/>
+              <Label Text="{Binding City.WeatherTempCelsius}" FontSize="20"/>
+              <Label Text="{Binding City.WeatherMain}" FontSize="20"/>
             </StackLayout>
 
             <StackLayout Orientation="Horizontal">
-              <Label Text="Wind" FontSize="Micro"/>
-              <Label Text="{Binding City.WeatherWind}" FontSize="Micro"/>
+              <Label Text="Wind" FontSize="20" WidthRequest="120"/>
+              <Label Text="{Binding City.WeatherWind}" FontSize="20"/>
             </StackLayout>
 
             <StackLayout Orientation="Horizontal">
-              <Label Text="Cloudiness" FontSize="Micro"/>
-              <Label Text="{Binding City.WeatherCloudiness}" FontSize="Micro"/>
+              <Label Text="{Binding City.WeatherMain}" FontSize="20" WidthRequest="120"/>
+              <Label Text="{Binding City.WeatherCloudiness}" FontSize="20"/>
             </StackLayout>
 
             <StackLayout Orientation="Horizontal">
-              <Label Text="Pressure" FontSize="Micro"/>
-              <Label Text="{Binding City.WeatherPressure}" FontSize="Micro"/>
+              <Label Text="Pressure" FontSize="20" WidthRequest="120"/>
+              <Label Text="{Binding City.WeatherPressure}" FontSize="20"/>
             </StackLayout>
 
             <StackLayout Orientation="Horizontal">
-              <Label Text="Humidity" FontSize="Micro"/>
-              <Label Text="{Binding City.WeatherHumidity}" FontSize="Micro"/>
+              <Label Text="Humidity" FontSize="20" WidthRequest="120"/>
+              <Label Text="{Binding City.WeatherHumidity}" FontSize="20"/>
             </StackLayout>
 
             <StackLayout Orientation="Horizontal">
-              <Label Text="Sunrise" FontSize="Micro"/>
-              <Label Text="{Binding City.WeatherSunrise}" FontSize="Micro"/>
+              <Label Text="Sunrise" FontSize="20" WidthRequest="120"/>
+              <Label Text="{Binding City.WeatherSunrise}" FontSize="20"/>
             </StackLayout>
 
             <StackLayout Orientation="Horizontal">
-              <Label Text="Sunset" FontSize="Micro"/>
-              <Label Text="{Binding City.WeatherSunset}" FontSize="Micro"/>
+              <Label Text="Sunset" FontSize="20" WidthRequest="120"/>
+              <Label Text="{Binding City.WeatherSunset}" FontSize="20"/>
             </StackLayout>
 
             <StackLayout Orientation="Horizontal">
-              <Label Text="Geo Coordinates" FontSize="Micro"/>
-              <Label Text="{Binding City.Coordinates}" FontSize="Micro" PropertyChanged="Coordinates_PropertyChanged"/>
+              <Label Text="Geo Coords" FontSize="20" WidthRequest="120"/>
+              <Label Text="{Binding City.Coordinates}" FontSize="20" PropertyChanged="Coordinates_PropertyChanged"/>
             </StackLayout>
 
           </StackLayout>

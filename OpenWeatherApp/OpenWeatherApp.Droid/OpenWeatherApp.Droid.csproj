@@ -194,14 +194,14 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\drawable\01d.png" />
-    <Content Include="Resources\drawable\01n.png" />
-    <Content Include="Resources\drawable\02d.png" />
-    <Content Include="Resources\drawable\02n.png" />
-    <Content Include="Resources\drawable\03d.png" />
-    <Content Include="Resources\drawable\03n.png" />
-    <Content Include="Resources\drawable\04d.png" />
-    <Content Include="Resources\drawable\04n.png" />
+    <AndroidResource Include="Resources\drawable\r01d.png" />
+    <AndroidResource Include="Resources\drawable\r01n.png" />
+    <AndroidResource Include="Resources\drawable\r02d.png" />
+    <AndroidResource Include="Resources\drawable\r02n.png" />
+    <AndroidResource Include="Resources\drawable\r03d.png" />
+    <AndroidResource Include="Resources\drawable\r03n.png" />
+    <AndroidResource Include="Resources\drawable\r04d.png" />
+    <AndroidResource Include="Resources\drawable\r04n.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\..\packages\Xamarin.Android.Support.Vector.Drawable.23.3.0\build\Xamarin.Android.Support.Vector.Drawable.targets" Condition="Exists('..\..\packages\Xamarin.Android.Support.Vector.Drawable.23.3.0\build\Xamarin.Android.Support.Vector.Drawable.targets')" />
