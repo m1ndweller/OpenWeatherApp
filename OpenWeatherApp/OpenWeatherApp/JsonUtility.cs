@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.IO;
-
+using OpenWeatherApp.Data;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System.Runtime.Serialization.Json;
 
 
@@ -16,7 +17,7 @@ namespace OpenWeatherApp
     public class JsonUtility
     {
         HttpClient client;
-
+        
         public JsonUtility()
         {
             client = new HttpClient();
@@ -55,6 +56,65 @@ namespace OpenWeatherApp
 
             return content;
         }
-       
+
+        public City FillCityDataFromJson(string json_string)
+        {
+            City c = new City();
+            //JArray weather_block;
+            dynamic js = JObject.Parse(json_string);
+            c.Name = js.name;
+            c.Country = js.sys.country;
+            c.Latitude = js.coord.lat;
+            c.Longitude = js.coord.lon;
+            //weather_block = js.weather;
+            //string[] Users = weather_block.ToObject<string[]>();
+            //c.WeatherHumidity = Users;
+            c.WeatherIconUrl = /*"Icons/" +*/ js.weather[0].icon + ".png";
+            c.WeatherTempKelvin = js.main.temp;
+            //double temp_kd = js.main.temp;
+            //c.WeatherTempCelsius = (temp_kd - 273.15).ToString().Replace(",",".") + "\u00B0 C";
+            c.WeatherTempCelsius = (js.main.temp - 273.15).ToString().Replace(",", ".") + "\u00B0 C";
+            c.WeatherMain = js.weather[0].main;
+            c.WeatherWind = js.wind.speed + " m/s";
+            c.WeatherCloudiness = js.weather[0].description;
+            c.WeatherPressure = js.main.pressure + " hpa";
+            c.WeatherHumidity = js.main.humidity + "%";
+            double sunrise = js.sys.sunrise;
+            double sunset = js.sys.sunset;
+            c.WeatherSunrise = UnixTimeStampToDateTime(sunrise).TimeOfDay.ToString();
+            c.WeatherSunset = UnixTimeStampToDateTime(sunset).TimeOfDay.ToString();
+            
+            return c;
+            
+        }
+
+        public async Task<City> GetWeather(string city_name)
+        {
+            string json_data;
+            City c = new City();
+            json_data = await RefreshDataAsync(city_name);
+            c = FillCityDataFromJson(json_data);
+            return c; 
+        }
+
+        public static DateTime UnixTimeStampToDateTime(double unixTimeStamp)
+        {
+            // Unix timestamp is seconds past epoch
+            System.DateTime dtDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc);
+            dtDateTime = dtDateTime.AddSeconds(unixTimeStamp).ToLocalTime();
+            return dtDateTime;
+        }
+        /*public void FillCityDataFromJson(string json_string, City c)
+        {
+            dynamic js = JObject.Parse(json_string);
+            c.Name = js.name;
+        }
+        public async void GetWeather(string city_name, City c)
+        {
+            string json_data;
+            json_data = await RefreshDataAsync(city_name);
+            FillCityDataFromJson(json_data, c);
+        }*/
+
     }
 }

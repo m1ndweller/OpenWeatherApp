@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Globalization;
 using FormsToolkit;
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
 using OpenWeatherApp.Data;
+using Plugin.ExternalMaps;
+using Plugin.ExternalMaps.Abstractions;
 
 namespace OpenWeatherApp
 {
@@ -68,9 +71,9 @@ namespace OpenWeatherApp
 
         public async Task<Position> GetPosition()
         {
-            this.City.Latitude = "52.6";
-            this.City.Longitude = "39.57";
-            this.City.Name = "Lipetsk";
+            //this.City.Latitude = "52.6";
+            //this.City.Longitude = "39.57";
+            //this.City.Name = "Lipetsk";
 
 
             /*if (!HasLocation)
@@ -96,10 +99,33 @@ namespace OpenWeatherApp
             return p;*/
             JsonUtility jsu = new JsonUtility();
             //this.City.Country = jsu.CheckRequest("Lipetsk");
-            string s = await jsu.RefreshDataAsync("Lipetsk");
+            this.City.Name = this.City.SearchName;
+            string s = await jsu.RefreshDataAsync(this.City.SearchName);
             this.City.WeatherMain = s;
             //await Task.Delay(1000);
+            City c = await jsu.GetWeather(this.City.SearchName);
+            this.City.copy(c);
+            c = null;
+
+            //double lat, lon;
+            //lat = Double.Parse(String.Format(this.City.Latitude));
+            //lon =  Double.Parse(String.Format(this.City.Longitude));
+            //lat = Convert.ToDouble(this.City.Latitude, CultureInfo.InvariantCulture);
+            //lon = Convert.ToDouble(this.City.Longitude, CultureInfo.InvariantCulture);
+            //await ExecuteGetDirectionsCommand(lat, lon);
+            //this.City.Name = c.Name;
+            //this.City = await jsu.GetWeather("Lipetsk");
+            //await jsu.GetWeather("Lipetsk");
             return new Position(0, 0);
         }
+        /*
+        async Task ExecuteGetDirectionsCommand(double lat, double lon)
+        {
+            var position = new Position(lat, lon);
+
+            var pin = new Pin() { Position = position };
+
+            await CrossExternalMaps.Current.NavigateTo(pin.Label, pin.Position.Latitude, pin.Position.Longitude, NavigationType.Driving);
+        }*/
     }
 }

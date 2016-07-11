@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Globalization;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
+using System.ComponentModel;
 
 namespace OpenWeatherApp
 {
@@ -27,19 +29,42 @@ namespace OpenWeatherApp
             //await SetMapStartPosition();
             
             SetPosition();
-            await Task.Delay(1000);
+            await Task.Delay(100);
         }
 
         void SetPosition()
         {
             CityMap.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(52.6, 39.57), Distance.FromKilometers(5)));
-            CityMap.Pins.Add(new Pin()
+            /*CityMap.Pins.Add(new Pin()
             {
                 Position = new Position(52.6, 39.57),
                 Label = "Lipetsk"
-            });
+            });*/
         }
 
+        void SearchBar_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "Text")
+            {
+                ViewModel.City.SearchName = CitySearchBar.Text;
+            }
+        }
+
+        void Coordinates_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "Text")
+            {
+                Position cityPosition = new Position(Convert.ToDouble(ViewModel.City.Latitude, CultureInfo.InvariantCulture),
+                    Convert.ToDouble(ViewModel.City.Longitude, CultureInfo.InvariantCulture));
+                CityMap.MoveToRegion(MapSpan.FromCenterAndRadius(cityPosition, Distance.FromKilometers(5)));
+                CityMap.Pins.Add(new Pin()
+                {
+                    Position = cityPosition,
+                    Label = "City"
+                });
+            }
+        }
+        /*
         async Task SetMapStartPosition()
         {
             if (ViewModel.HasLocation)
@@ -84,6 +109,6 @@ namespace OpenWeatherApp
 
                 CityMap.IsVisible = true;
             }
-        }
+        }*/
     }
 }

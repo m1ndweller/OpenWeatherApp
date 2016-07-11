@@ -28,7 +28,7 @@ namespace OpenWeatherApp.Data
         [JsonIgnore]
         public string Coordinates => ToString();
 
-        public override string ToString() => $"{Latitude}, {Longitude}";
+        public override string ToString() => $"{Latitude} {Longitude}";
 
         /*string _Coordinates;
         public string Coordinates
@@ -128,6 +128,31 @@ namespace OpenWeatherApp.Data
             get { return _WeatherSunset; }
             set { SetProperty(ref _WeatherSunset, value); }
         }
+
+        string _SearchName;
+        public string SearchName
+        {
+            get { return _SearchName;  }
+            set { SetProperty(ref _SearchName, value); }
+        }
+        
+        public void copy(City c)
+        {
+            this.Name = c.Name;
+            this.Country = c.Country;
+            this.Latitude = c.Latitude;
+            this.Longitude = c.Longitude;
+            this.WeatherCloudiness = c.WeatherCloudiness;
+            this.WeatherHumidity = c.WeatherHumidity;
+            this.WeatherIconUrl = c.WeatherIconUrl;
+            this.WeatherMain = c.WeatherMain;
+            this.WeatherPressure = c.WeatherPressure;
+            this.WeatherSunrise = c.WeatherSunrise;
+            this.WeatherSunset = c.WeatherSunset;
+            this.WeatherTempCelsius = c.WeatherTempCelsius;
+            this.WeatherTempKelvin = c.WeatherTempKelvin;
+            this.WeatherWind = c.WeatherWind;
+        }      
 
     }
 }

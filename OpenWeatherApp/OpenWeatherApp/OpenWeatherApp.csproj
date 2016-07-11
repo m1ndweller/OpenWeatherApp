@@ -113,6 +113,14 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Icons\01d.png" />
+    <Content Include="Icons\01n.png" />
+    <Content Include="Icons\02d.png" />
+    <Content Include="Icons\02n.png" />
+    <Content Include="Icons\03d.png" />
+    <Content Include="Icons\03n.png" />
+    <Content Include="Icons\04d.png" />
+    <Content Include="Icons\04n.png" />
     <Content Include="search.jpg" />
   </ItemGroup>
   <ItemGroup />

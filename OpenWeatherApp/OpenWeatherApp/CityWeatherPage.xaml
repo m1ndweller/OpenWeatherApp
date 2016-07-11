@@ -21,12 +21,16 @@
 
     <AbsoluteLayout BackgroundColor="White">
       <StackLayout Spacing="0" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
+
+        <ContentView>
+          <SearchBar x:Name="CitySearchBar" Text="" Placeholder="Search" SearchCommand="{Binding SearchCityCommand}" PropertyChanged="SearchBar_PropertyChanged" />
+        </ContentView>
         
         <ContentView>
           <AbsoluteLayout VerticalOptions="FillAndExpand">
             <AbsoluteLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1.0, 1.0">
               <ActivityIndicator IsVisible="{Binding IsBusy}" IsRunning="{Binding IsBusy}" AbsoluteLayout.LayoutFlags="PositionProportional, WidthProportional" AbsoluteLayout.LayoutBounds="0.5, 0.5, 0.2, AutoSize" />
-              <maps:Map x:Name="CityMap" WidthRequest="320" HeightRequest="300" IsShowingUser="true" MapType="Satellite" IsVisible="true" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1.0, 1.0" />
+              <maps:Map x:Name="CityMap" WidthRequest="320" HeightRequest="300" IsShowingUser="true" MapType="Hybrid" IsVisible="true" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1.0, 1.0" />
             </AbsoluteLayout>
           </AbsoluteLayout>
         </ContentView>
@@ -37,13 +41,6 @@
         <ContentView>
 
           <StackLayout>
-            <StackLayout Orientation="Horizontal" Spacing="10">
-              <!--
-              <SearchBar Placeholder="Search" SearchCommand="{Binding SearchCityCommand}" /> 
-              -->
-              <Entry />
-              <Button Text="Go" Command="{Binding SearchCityCommand}"/>
-            </StackLayout>
             <StackLayout Orientation="Horizontal" Spacing="10">
               <Label Text="{Binding City.Name}" FontSize="Micro"/>
               <Label Text="{Binding City.Country}" FontSize="Micro"/>
@@ -87,7 +84,7 @@
 
             <StackLayout Orientation="Horizontal">
               <Label Text="Geo Coordinates" FontSize="Micro"/>
-              <Label Text="{Binding City.Coordinates}" FontSize="Micro"/>
+              <Label Text="{Binding City.Coordinates}" FontSize="Micro" PropertyChanged="Coordinates_PropertyChanged"/>
             </StackLayout>
 
           </StackLayout>
